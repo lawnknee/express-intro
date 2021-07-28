@@ -17,46 +17,46 @@ const MISSING = "Expected key `nums` with comma-separated list of numbers.";
 app.get("/mean", function (req, res) {
 
   if (!req.query.nums) {
-      throw new BadRequestError(message = "nums are required");
+    throw new BadRequestError(message = "nums are required");
   } else {
-        let strNums = Object.values(req.query.nums).filter(el => el !== ",");
-    
-        let nums = convertStrNums(strNums);
-    
-        let mean = findMean(nums);
-        return res.json( { response: { operation: "mean", value: mean }} );
+    let strNums = Object.values(req.query.nums).filter(el => el !== ",");
+
+    let nums = convertStrNums(strNums);
+
+    let mean = findMean(nums);
+    return res.json( { response: { operation: "mean", value: mean }} );
   }
 })
 
 /** Finds median of nums in qs: returns {operation: "median", result } */
 app.get("/median", function (req, res) {
 
-    if (!req.query.nums) {
-        throw new BadRequestError(message = "nums are required");
-    } else {
-        let strNums = Object.values(req.query.nums).filter(el => el !== ",");
-        
-        let nums = convertStrNums(strNums);
+  if (!req.query.nums) {
+    throw new BadRequestError(message = "nums are required");
+  } else {
+    let strNums = Object.values(req.query.nums).filter(el => el !== ",");
+    
+    let nums = convertStrNums(strNums);
 
-        let median = findMedian(nums);
-        return res.json( { response: { operation: "median", value: median }} );
-    }
+    let median = findMedian(nums);
+    return res.json( { response: { operation: "median", value: median }} );
+  }
 })
 
 
 /** Finds mode of nums in qs: returns {operation: "mean", result } */
 app.get("/mode", function (req, res) {
 
-    if (!req.query.nums) {
-        throw new BadRequestError(message = "nums are required");
-    } else {
-        let strNums = Object.values(req.query.nums).filter(el => el !== ",");
-        
-        let nums = convertStrNums(strNums);
+  if (!req.query.nums) {
+    throw new BadRequestError(message = "nums are required");
+  } else {
+    let strNums = Object.values(req.query.nums).filter(el => el !== ",");
     
-        let mode = findMode(nums);
-        return res.json( { response: { operation: "mode", value: mode }} );
-    }
+    let nums = convertStrNums(strNums);
+
+    let mode = findMode(nums);
+    return res.json( { response: { operation: "mode", value: mode }} );
+  }
 })
 
 /** 404 handler: matches unmatched routes; raises NotFoundError. */
