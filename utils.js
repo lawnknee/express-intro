@@ -7,14 +7,22 @@ function convertStrNums(strNums) {
   // if the conversion isn't successful, throw a BadRequestError and will
   // be handled in your route
 
-    const nums = strNums.map(str => Number(str));
-
-    nums.forEach(num => {
-        if (typeof num !== "number") {
-            throw new BadRequestError();
-        }
-    })
-    return nums;
+  const nums = strNums.map(str => Number(str));
+  
+  for (let num of nums) {
+    if (isNaN(num)) {
+      throw new BadRequestError(`not a number`);
+    }
+  }
+  return nums;
+  
+  // if (!nums.every(num => (typeof num === "number" && num !== NaN))) {
+  //   return "not nums";
+  // } else {
+  //   // throw new BadRequestError();
+  //   console.log(nums)
+  //   return nums;
+  // }
 }
 
 module.exports = { convertStrNums };
